@@ -1,0 +1,67 @@
+configuration {
+	modes: [ combi, run ];
+	combi-modes: [ window, drun, run ];
+}
+
+@theme "tokyonight-moon"
+
+window {
+	border-radius: 10px;
+	border: 2px;
+	border-color: var(blue);
+}
+
+mainbox {
+	padding: 2px;
+}
+
+inputbar {
+	children: [ prompt, textbox-prompt-colon, entry ];
+	margin: 5px 0;
+}
+
+prompt {
+	text-color: var(foreground);
+}
+
+entry {
+	text-color: var(gray);
+}
+
+element {
+	orientation: horizontal;
+	children: [ element-text ];
+	spacing: 5px;
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 5px 5px;
+}
+
+element selected.normal {
+	background-color: var(blue);
+	text-color: var(background);
+}
+
+element alternate.normal {
+	background-color: var(background);
+}
+
+element-icon {
+	size: 2.5em;
+}
+
+entry {
+	text-color: var(white);
+}
+
+listview {
+	border: none;
+}
+
+scrollbar {
+	margin: 0 0 0 5px;
+}
+
+element-text {
+	vertical-align: 0.5;
+}

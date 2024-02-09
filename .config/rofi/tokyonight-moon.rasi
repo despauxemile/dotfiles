@@ -1,0 +1,16 @@
+@theme "default"
+* {
+    black: #1b1d2b;
+    gray: #828bb8;
+    white: #c8d3f5;
+    red: #ff757f;
+    green: #c3e88d;
+    yellow: #ffc777;
+    blue: #82aaff;
+    magenta: #c099ff;
+    cyan: #86e1fc;
+	foreground: #c8d3f5;
+	background: #222436;
+
+	font: "FiraCode Nerd Font 11";
+}
