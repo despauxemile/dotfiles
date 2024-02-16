@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+NoDisplay=true
+Name=neovim (kitty)
+Exec=/usr/bin/kitty -e /usr/bin/nvim
+MimeType=text/plain
