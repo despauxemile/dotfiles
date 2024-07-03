@@ -42,7 +42,10 @@ return {
 				capabilities = capabilities
 			})
 			lspcfg.rust_analyzer.setup({
-				capabilities = capabilities
+				capabilities = capabilities,
+				on_attach = function(client, bufnr)
+					vim.lsp.inlay_hint.enable(true, {bufnr})
+				end
 			})
 
 			-- keymaps
