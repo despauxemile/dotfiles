@@ -9,7 +9,7 @@ return {
 		'williamboman/mason-lspconfig.nvim',
 		config = function()
 			require('mason-lspconfig').setup({
-				ensure_installed = { 'lua_ls', 'texlab', 'clangd', 'zls', 'tsserver', 'html', 'cssls', 'rust_analyzer' }
+				ensure_installed = { 'lua_ls', 'texlab', 'clangd', 'zls', 'tsserver', 'html', 'cssls', 'rust_analyzer', 'asm_lsp' }
 			})
 		end,
 	},
@@ -46,6 +46,9 @@ return {
 				on_attach = function(client, bufnr)
 					vim.lsp.inlay_hint.enable(true, {bufnr})
 				end
+			})
+			lspcfg.asm_lsp.setup({
+				capabilities = capabilities
 			})
 
 			-- keymaps
