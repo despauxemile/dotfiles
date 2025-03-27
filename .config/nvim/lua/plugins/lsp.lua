@@ -9,7 +9,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "clangd", "rust_analyzer", "ts_ls", "pyright", "zls" }
+                ensure_installed = { "clangd", "rust_analyzer", "ts_ls", "pyright", "zls", "tinymist" }
             })
         end
     },
@@ -36,6 +36,9 @@ return {
                 capabilities = capabilities,
             })
             lspconfig["zls"].setup({
+                capabilities = capabilities,
+            })
+            lspconfig["tinymist"].setup({
                 capabilities = capabilities,
             })
 
