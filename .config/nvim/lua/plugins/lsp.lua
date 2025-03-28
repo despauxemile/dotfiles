@@ -37,7 +37,11 @@ return {
                         vim.lsp.inlay_hint.enable(true, { bufnr })
                     end
                 },
-                zls = {},
+                zls = {
+                    on_attach = function(_, bufnr)
+                        vim.lsp.inlay_hint.enable(true, { bufnr })
+                    end
+                },
                 tinymist = {},
             },
         },
