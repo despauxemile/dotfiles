@@ -1,6 +1,7 @@
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function()
         vim.keymap.set("n", "K", vim.lsp.buf.hover)
+        vim.keymap.set("n", "<leader>dg", vim.diagnostic.open_float)
         vim.keymap.set("n", "gd", vim.lsp.buf.definition)
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
@@ -42,6 +43,7 @@ return {
                         vim.lsp.inlay_hint.enable(true, { bufnr })
                     end
                 },
+                pyright = {},
                 tinymist = {},
             },
         },
