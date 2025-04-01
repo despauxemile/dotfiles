@@ -21,7 +21,7 @@ return {
     {
         "williamboman/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = { "lua_ls", "ts_ls", "clangd", "rust_analyzer", "zls", "pyright", "tinymist" }
+            ensure_installed = { "lua_ls", "ts_ls", "clangd", "rust_analyzer", "zls", "pyright", "tinymist", "svelte", "cssls", "html" }
         },
         dependencies = { "williamboman/mason.nvim" },
     },
@@ -45,6 +45,9 @@ return {
                 },
                 pyright = {},
                 tinymist = {},
+                svelte = {},
+                cssls = {},
+                html = {},
             },
         },
         config = function(_, opts)
