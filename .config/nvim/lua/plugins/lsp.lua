@@ -13,6 +13,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 })
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.lua", "*.rs", "*.zig" },
+    callback = function()
+        vim.lsp.buf.format { async = false }
+    end
+})
+
 return {
     {
         "williamboman/mason.nvim",
