@@ -21,24 +21,30 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 return {
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = {},
     },
     {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = { "lua_ls", "ts_ls", "clangd", "rust_analyzer", "zls", "pyright", "tinymist", "svelte", "cssls", "html" }
+            ensure_installed = { "lua_ls", "ts_ls", "clangd", "rust_analyzer", "zls", "pyright", "tinymist", "svelte", "cssls", "html" },
+            automatic_enable = {
+                exclude = {
+                    "rust_analyzer",
+                    "zls",
+                }
+            },
         },
-        dependencies = { "williamboman/mason.nvim" },
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig"
+        },
     },
     {
         "neovim/nvim-lspconfig",
         dependencies = { 'saghen/blink.cmp' },
         opts = {
             servers = {
-                lua_ls = {},
-                ts_ls = {},
-                clangd = {},
                 rust_analyzer = {
                     on_attach = function(_, bufnr)
                         vim.lsp.inlay_hint.enable(true, { bufnr })
@@ -56,11 +62,6 @@ return {
                         vim.lsp.inlay_hint.enable(true, { bufnr })
                     end
                 },
-                pyright = {},
-                tinymist = {},
-                svelte = {},
-                cssls = {},
-                html = {},
             },
         },
         config = function(_, opts)
