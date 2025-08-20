@@ -7,5 +7,5 @@ starship init fish | source
 set -x EDITOR nvim
 
 # bun
-# set --export BUN_INSTALL "$HOME/.bun"
-# set --export PATH $BUN_INSTALL/bin $PATH
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
