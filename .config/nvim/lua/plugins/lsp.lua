@@ -13,64 +13,43 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.lua", "*.rs", "*.zig" },
     callback = function()
         vim.lsp.buf.format { async = false }
     end
 })
 
-return {
-    {
-        "mason-org/mason.nvim",
-        opts = {},
+vim.lsp.config("*", {
+    capabilities = vim.lsp.protocol.make_client_capabilities(),
+})
+
+vim.lsp.config("lua_ls", {
+    settings = {
+        ["Lua"] = {
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+        },
     },
+})
+
+vim.lsp.enable({ "clangd", "rust_analyzer" })
+
+vim.diagnostic.config({ severity_sort = true })
+
+return {
     {
         "mason-org/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = { "lua_ls", "ts_ls", "clangd", "rust_analyzer", "zls", "pyright", "tinymist", "svelte", "cssls", "html" },
-            automatic_enable = {
-                exclude = {
-                    "rust_analyzer",
-                    "zls",
-                }
-            },
+            ensure_installed = { "lua_ls", "ts_ls", "zls", "pyright", "tinymist", "svelte", "cssls", "html" },
         },
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
-            "neovim/nvim-lspconfig"
         },
     },
     {
         "neovim/nvim-lspconfig",
-        dependencies = { 'saghen/blink.cmp' },
-        opts = {
-            servers = {
-                rust_analyzer = {
-                    on_attach = function(_, bufnr)
-                        vim.lsp.inlay_hint.enable(true, { bufnr })
-                    end,
-                    settings = {
-                        ["rust-analyzer"] = {
-                            check = {
-                                command = "clippy"
-                            }
-                        }
-                    }
-                },
-                zls = {
-                    on_attach = function(_, bufnr)
-                        vim.lsp.inlay_hint.enable(true, { bufnr })
-                    end
-                },
-            },
-        },
-        config = function(_, opts)
-            vim.diagnostic.config({ severity_sort = true })
-            local lspcfg = require("lspconfig")
-            for server, config in pairs(opts.servers) do
-                config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-                lspcfg[server].setup(config)
-            end
+        opts = {},
+        config = function()
         end
     },
 }

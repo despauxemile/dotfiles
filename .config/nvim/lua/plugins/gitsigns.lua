@@ -1,9 +1,11 @@
 return {
     "lewis6991/gitsigns.nvim",
     opts = {
-        on_attach = function(buf)
-            vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>")
-            vim.cmd([[:Gitsigns toggle_current_line_blame]])
-        end
+        current_line_blame = true,
     },
+    config = function()
+        vim.keymap.set({ "n", "v" }, "<leader>gp", ":Gitsigns preview_hunk<CR>")
+        vim.keymap.set({ "n", "v" }, "<leader>gP", ":Gitsigns preview_hunk_inline<CR>")
+        vim.keymap.set({ "n", "v" }, "<leader>gs", ":Gitsigns stage_hunk<CR>")
+    end
 }
